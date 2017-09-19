@@ -1,0 +1,117 @@
+
+Contents of software package
+============================
+
+Modules contained:
+
+analysis.py
+-----------
+This module contains:
+    class HistList: group of histograms 
+    
+    subclass AnalysisParamters: group of histograms and some relavent 
+        parameters for the experiments
+    
+    subsubclass PartialMaxLike: group of histograms, relevante parameters, and
+        tomography and bootstrap methods
+        
+histogram.py
+-----------
+This module contains:
+    class Hist: single histogram from one experiment
+    
+tomography.py
+-------------
+This moduel contains:
+    class Tomographer: tomography methods used for alternating maximum 
+        likelihood optimization
+
+simulate_tools.py
+-----------------
+Functions to build known/unknonwn states, known uniataries, and underlying 
+POVM elements for trapped-ion example.
+
+analysis_tools.py
+-----------------
+Functions used to analyze the data and produce plots in arXiv:17xx.xxxxx
+
+
+Brief explanation of software
+=============================
+The basic structure is to create a PartialMaxLike instance and either use the 
+built-in simulation methods or load in external data as histograms. This 
+creates an AnalysisParameters instance (which then creates a HistList instance)
+to store the data. The different operations described in arXiv:17xx.xxxxx 
+are contained in the methods of PartialMaxLike:
+
+Coarse-grained binning: (.autobinMaxLike method, described in Appendix B) 
+                        takes raw histogram data removes a fraction of the
+                        reference experimental data to find a binning rule 
+                        based on mutual information heuristic algorithm.
+
+Tomography: (.tomography method, described in Sec. IV and Appendix C) 
+            finds maximum likelihood estimate from experimental data by 
+            alternating between two objects: one with states fixed and the 
+            transition matrix as a free parameter and the second with 
+            transition matrix fixed and states as free paramters.
+            
+Expectation bounding: (.inferExpectationValues method, described in Sec. V)
+                      bounds the expectation values of an arbitrary observable
+                      by two semidefinite programs (one to find max, one to
+                      find min). Called in simulations scripts with
+                      analysis_tools.expectationValues.
+                        
+
+Bootstrapping:  (.bootstrap and .bootstrapAnalysis methods, 
+                 described in Sec. VI) 
+                Randomly resamples with replacement from experimental
+                data (non-parametric) or from generated estimates (parametric)
+                and repeats tomography procedure on each resample. This 
+                generates a set of simulated estates used to find confidence 
+                intervals of the expecation values given by 
+                .bootstrapAnalysis method.
+
+Note on notation:
+    In arXiv:17xx.xxxx we call a "histogram" a matrix which contains all the
+    data from experiments with a certain state prep. In the code, a histogram
+    referes to the vector which contains the number of counts per bin of one 
+    experiment, that is one row of the paper's histogram matrix.
+               
+
+Other situations
+================
+
+The software is sufficiently flexible to handle other situations that were 
+not described in arXiv:17xx.xxxxx.
+
+n > 2 qubits: the software is compatible with any number of qubits n, but the 
+              simulation code only contain examples with n = 1 and 2. For n > 2
+              the run time may increase drastically since there are potentially
+              many outcomes in the POVM. The heuristic coarse-grainning
+              algorithm may also not work as well for more qubits when 
+              each qubit is addressed individually (as described next).
+
+Multi-dimensional histograms: when n qubits are individually measured then the
+                              the histograms produced will have n dimensions.
+                              The software can handle this type of situation 
+                              as demonstrated in asym_simulations.py and
+                              load_simulations.py. However, the number of 
+                              histogram bins scales exponentially with n so
+                              for n > 3 the software may be prohibatively slow.
+                              The coarse-grained binning heurstic algorithm 
+                              may also not work as well in this situation.
+                              
+Multiple input states: the estimation software can handle more than one unknown
+                       state, but the simulation software (simulate_tools.py) 
+                       is written to only generate a single unknonw state.
+                       The input_state attribute of PartialMaxLike describes
+                       the histograms that probe of the unknown states. For
+                       example, in paper_simulations.py input_state[i] = 1 for
+                       i>3 shows that for i>3 the corresponding histograms
+                       are probing data for the first (and in this case only)
+                       unknown state. For multiple unknown states one needs to 
+                       include the corresponding histograms in the 
+                       HistList.hists method and add the index to input_states
+                       array.
+                        
+                
