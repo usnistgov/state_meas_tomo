@@ -25,7 +25,7 @@ import numpy as np
 import analysis
 import histogram as hg        # Import Hist() class and helper functions
 import simulate_tools as st   # Import tools for 2 ion example
-import analysis_tools2
+import analysis_tools
 
 
 ############################## RELEVANT PARAMETERS ############################
