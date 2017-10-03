@@ -14,9 +14,9 @@ Author = Adam Keith
 import time
 import sys
 
-sys.path.append('/installdir1/python_code/')
-sys.path.append('/installdir1/python_code/analysis_scripts')
-sys.path.append('/installdir1/python_code/partial_tomography')
+sys.path.append('/installdir1/state_meas_tomo/')
+sys.path.append('/installdir1/state_meas_tomo/analysis_scripts')
+sys.path.append('/installdir1/state_meas_tomo/partial_tomography')
 sys.path.append('/installdir2/lib/python3.4/site-packages/')
 sys.path.append('/installdir2/lib/python3.4/site-packges/matlab')
 
@@ -136,7 +136,7 @@ bootstrap_fids = SE.bootstrap(iters=bootstrap_iters)
 SE.bootstrapAnalysis()
 
 ## Uncomment to bound expectation values when run through terminal
-print('Finding expectation value bounds...')
-analysis_tools2.expectationValues(SE, observables)
+#print('Finding expectation value bounds...')
+#analysis_tools.expectationValues(SE, observables)
 
 print('Elapsed Time: ' + str(time.time()- t) + ' seconds')

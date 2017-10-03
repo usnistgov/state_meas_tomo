@@ -15,9 +15,9 @@ import sys
 
 import numpy as np
 
-sys.path.append('/installdir1/python_code/')
-sys.path.append('/installdir1/python_code/analysis_scripts')
-sys.path.append('/installdir1/python_code/partial_tomography')
+sys.path.append('/installdir1/state_meas_tomo/')
+sys.path.append('/installdir1/state_meas_tomo/analysis_scripts')
+sys.path.append('/installdir1/state_meas_tomo/partial_tomography')
 sys.path.append('/installdir2/lib/python3.4/site-packages/')
 sys.path.append('/installdir2/lib/python3.4/site-packges/matlab')
 

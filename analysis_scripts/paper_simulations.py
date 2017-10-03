@@ -19,9 +19,9 @@ import time
 
 import numpy as np
 
-sys.path.append('/installdir1/python_code/')
-sys.path.append('/installdir1/python_code/analysis_scripts')
-sys.path.append('/installdir1/python_code/partial_tomography')
+sys.path.append('/installdir1/state_meas_tomo/')
+sys.path.append('/installdir1/state_meas_tomo/analysis_scripts')
+sys.path.append('/installdir1/state_meas_tomo/partial_tomography')
 sys.path.append('/installdir2/lib/python3.4/site-packages/')
 sys.path.append('/installdir2/lib/python3.4/site-packges/matlab')
 
@@ -58,7 +58,6 @@ target_rho = np.outer(state_vector, state_vector)
 observables = np.dstack((obs1, obs2))   # add additional observables here
 
 # set up analysis
-# SE = pickle.load(open(filename+'.hist', 'rb')) # load data
 SE = analysis.PartialMaxLike(seed=seed_val)
 SE.targets=[target_rho]  
 SE.simulate(fid=0.99)
@@ -66,9 +65,8 @@ SE.simulate(fid=0.99)
 ########################### PLOT HISTOGRAMS ###################################
 
 # plot unbinned histograms
-#analysis_tools2.figure2(SE)    # hard-coded for N = 2
-#analysis_tools2.figure5(SE,BIN_NUM)
-#analysis_tools2.histogramPlots(SE)
+analysis_tools.figure2(SE)    # hard-coded for N = 2
+analysis_tools.figure5(SE, bin_num)
 
 ############################# DO ANALYSIS #####################################
 
@@ -83,7 +81,7 @@ bootstrap_fids = SE.bootstrap(method='parametric', iters=bootstrap_iter)
 SE.bootstrapAnalysis()
 
 ## Uncomment to bound expectation values when run through terminal
-print('Finding expectation value bounds...')
+#print('Finding expectation value bounds...')
 #analysis_tools.expectationValues(SE, OBSERVABLES)
 
 print('Elapsed Time: ' + str(time.time()- T) + ' seconds')

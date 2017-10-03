@@ -17,8 +17,7 @@ import scipy as sp
 import scipy.stats as sts
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from matplotlib.pyplot import gca
-         
+
 from histogram import Hist
 import simulate_tools as st
 
@@ -130,13 +129,13 @@ def histogramPlots(SE):
     # Reference experiments
     for ii in range(0,4):   
         ax1 = plt.subplot2grid((4,2), (ii, 0))
-        a = SE.hists[ii].binbounds[0].tolist()
-        plt.bar(SE.hists[ii].binbounds[0][0:-1], 
+        a = SE.hists[ii].bin_bounds[0].tolist()
+        plt.bar(SE.hists[ii].bin_bounds[0][0:-1], 
                 SE.hists[ii].hist/SE.hists[ii].trials,
                 width = [x - a[i - 1] for i, x in enumerate(a)][1:], 
                 edgecolor='k',align = 'edge',color=(29/255,154/255,120/255))
     
-        a = gca()
+        a = plt.gca()
         mpl.rc('font', family = 'Times New Roman')
         #a.set_xticklabels([0,10,20,30,40,50,60], fontsize=fontsi-2)
         plt.axis([0, 60, 0, np.max(SE.hists[ii].hist/SE.hists[ii].trials)*1.05])
@@ -147,13 +146,13 @@ def histogramPlots(SE):
     # Probing histograms
     for ii in range(4,8):
         ax1 = plt.subplot2grid((4,2), (ii-4, 1))
-        a = SE.hists[0].binbounds[0].tolist()
-        plt.bar(SE.hists[ii].binbounds[0][0:-1], 
+        a = SE.hists[0].bin_bounds[0].tolist()
+        plt.bar(SE.hists[ii].bin_bounds[0][0:-1], 
                 SE.hists[ii].hist/SE.hists[ii].trials,
                 width = [x - a[i - 1] for i, x in enumerate(a)][1:], 
                 edgecolor='k', align = 'edge',color=(29/255,154/255,120/255))
     
-        a = gca()
+        a = plt.gca()
         mpl.rc('font', family = 'Times New Roman')
         #a.set_xticklabels([0,10,20,30,40,50,60], fontsize=fontsi-2)
         plt.axis([0, 60, 0, np.max(SE.hists[ii].hist/SE.hists[ii].trials)*1.05])
@@ -164,7 +163,7 @@ def histogramPlots(SE):
     
 
 
-def responsePlots(numTrials=5000, mu=[2,20,40]):
+def responsePlots(num_trials=5000, mu=[2,20,40]):
     """Plots histograms of states contained in POVM elements.""" 
     
     fontsi = 12
@@ -175,27 +174,27 @@ def responsePlots(numTrials=5000, mu=[2,20,40]):
     
     # 2 dark histogram
     dark_hist = Hist()
-    dark_counts = dark_hist.simPoisson(numTrials, pops=dark_pops, mu=mu) 
-    plt.bar(dark_hist.binbounds[0][0:-1], dark_hist.hist/dark_hist.trials,
+    dark_counts = dark_hist.simPoisson(num_trials, pops=dark_pops, mu=mu) 
+    plt.bar(dark_hist.bin_bounds[0][0:-1], dark_hist.hist/dark_hist.trials,
             width=1, color=(29/255,111/255,169/255),
             edgecolor='black', align='edge') 
     
     # 1 bright 1 dark histogram
     mid_hist = Hist()
-    mid_counts = mid_hist.simPoisson(numTrials, pops=mid_pops, mu=mu) 
-    plt.bar(mid_hist.binbounds[0][0:-1], mid_hist.hist/mid_hist.trials, 
+    mid_counts = mid_hist.simPoisson(num_trials, pops=mid_pops, mu=mu) 
+    plt.bar(mid_hist.bin_bounds[0][0:-1], mid_hist.hist/mid_hist.trials, 
             width=1, color=(241/255,157/255,25/255),
             edgecolor='black', align='edge') 
     
     # 2 bright histogram
     bright_hist = Hist()
-    bright_counts = bright_hist.simPoisson(numTrials, pops=bright_pops, mu=mu) 
-    plt.bar(bright_hist.binbounds[0][0:-1], bright_hist.hist/bright_hist.trials, 
+    bright_counts = bright_hist.simPoisson(num_trials, pops=bright_pops, mu=mu) 
+    plt.bar(bright_hist.bin_bounds[0][0:-1], bright_hist.hist/bright_hist.trials, 
             width=1, color=(183/255,73/255,25/255), 
             edgecolor='black', align='edge') 
     
     # plot everything
-    a = gca()
+    a = plt.gca()
     mpl.rc('font', family='Times New Roman')
     plt.axis([0, 60, 0, np.max(dark_hist.hist/dark_hist.trials)*1.05])
     plt.ylabel('Relative frequency',fontsize=fontsi)
@@ -216,32 +215,33 @@ def figure2(SE):
     # second reference histogram
     axb = plt.subplot2grid((2,2), (0, 1))
     axb.text(55, 0.065, r'(b)', fontsize=fontsi+2, fontweight='bold')
-    a = SE.hists[1].binbounds[0].tolist()
-    plt.bar(SE.hists[1].binbounds[0][0:-1], 
+    a = SE.hists[1].bin_bounds[0].tolist()
+    plt.bar(SE.hists[1].bin_bounds[0][0:-1], 
             SE.hists[1].hist/SE.hists[1].trials,
             width = [x - a[i-1] for i, x in enumerate(a)][1:], 
             edgecolor='k',align = 'edge',color=(29/255,154/255,120/255))
     
-    a = gca()
+    a = plt.gca()
     mpl.rc('font', family = 'Times New Roman')
     plt.axis([0, 60, 0, np.max(SE.hists[1].hist/SE.hists[1].trials)*1.05])
     
     # first probe histogram
     axc = plt.subplot2grid((2,2), (1, 1))
     axc.text(55, 0.12, r'(c)', fontsize=fontsi+2, fontweight='bold')
-    a = SE.hists[4].binbounds[0].tolist()
-    plt.bar(SE.hists[4].binbounds[0][0:-1], 
+    a = SE.hists[4].bin_bounds[0].tolist()
+    plt.bar(SE.hists[4].bin_bounds[0][0:-1], 
             SE.hists[4].hist/SE.hists[4].trials,
             width = [x - a[i-1] for i, x in enumerate(a)][1:], 
             edgecolor='k',align = 'edge',color=(29/255,154/255,120/255))
     
-    a = gca()
+    a = plt.gca()
     mpl.rc('font', family = 'Times New Roman')
     plt.axis([0, 60, 0, np.max(SE.hists[4].hist/SE.hists[4].trials)*1.05])
     plt.xlabel('Counts', fontsize=fontsi)
 
+    plt.show()
  
-def figure5(SE,binnum):
+def figure5(SE,bin_num):
     """Makes figure 5 from paper."""
     
     fontsi = 12
@@ -250,15 +250,15 @@ def figure5(SE,binnum):
     # unbinned second reference histogram
     axa = plt.subplot2grid((2,1), (0,0))
     axa.text(55, 0.065, r'(a)', fontsize=fontsi+2, fontweight='bold')
-    a = SE.hists[1].binbounds[0].tolist()
-    plt.bar(SE.hists[1].binbounds[0][0:-1], 
+    a = SE.hists[1].bin_bounds[0].tolist()
+    plt.bar(SE.hists[1].bin_bounds[0][0:-1], 
             SE.hists[1].hist/SE.hists[1].trials,
             width = [x - a[i - 1] for i, x in enumerate(a)][1:], 
             edgecolor='k',align = 'edge',color=(29/255,154/255,120/255) )
     
-    max_counts = max(SE.hists[1].binbounds[0][0:-1])
+    max_counts = max(SE.hists[1].bin_bounds[0][0:-1])
     
-    a = gca()
+    a = plt.gca()
     mpl.rc('font', family = 'Times New Roman')
     plt.axis([0,  60,
               0, np.max(SE.hists[1].hist/SE.hists[1].trials)*1.05])
@@ -267,30 +267,32 @@ def figure5(SE,binnum):
     plt.ylabel('Relative frequency', fontsize=fontsi)
     
     # bin histogram
-    SE.autobin(binnum)
-    for i in range(binnum):
-        plt.axvline(x=SE.hists[1].binbounds[0][i], 
+    SE.autobinMaxLike(bin_num)
+    for i in range(bin_num):
+        plt.axvline(x=SE.hists[1].bin_bounds[0][i], 
                     linewidth=1, color = 'k')
     
     # binned second reference histogram
     axb = plt.subplot2grid((2,1), (1, 0))
     axb.text(55, 0.37, r'(b)', fontsize=fontsi+2, fontweight='bold')
-    a = SE.hists[1].binbounds[0].tolist()
-    plt.bar(SE.hists[1].binbounds[0][0:-1], 
+    a = SE.hists[1].bin_bounds[0].tolist()
+    plt.bar(SE.hists[1].bin_bounds[0][0:-1], 
             SE.hists[1].hist/SE.hists[1].trials,
             width = [x - a[i - 1] for i, x in enumerate(a)][1:], 
             edgecolor='k',align = 'edge',color=(29/255,154/255,120/255), )
     
-    for i in range(binnum):
-        plt.axvline(x=SE.hists[1].binbounds[0][i], 
+    for i in range(bin_num):
+        plt.axvline(x=SE.hists[1].bin_bounds[0][i], 
                     linewidth=1, color = 'k')
         
-    a = gca()
+    a = plt.gca()
     mpl.rc('font', family = 'Times New Roman')
     plt.axis([0, 60, 
               0, np.max(SE.hists[1].hist/SE.hists[1].trials)*1.05])
     plt.ylabel('Relative frequency', fontsize=fontsi)
     plt.xlabel('Counts', fontsize=fontsi)
+    
+    plt.show()
     
     
 def likelihoodRatioPlot(bootstrap_ratios, meas_ratio):
@@ -305,104 +307,16 @@ def likelihoodRatioPlot(bootstrap_ratios, meas_ratio):
     plt.title('bootstrap loglikelihood ratio')
     
     plt.axvline(x=meas_ratio, linewidth=1, color = 'k')
+    plt.show()
     
 
-def boundCorrelationPlot(SE, bootstrap_method = 'basic'):
-    """Plots correlation between upper and lower bounds.""" 
-    
-    fontsi = 14
-        
-    bound_list = pickle.load(open('results-'+SE.name+'.out','rb'))
-    num_obs = len(bound_list.keys())
+def loadAnalysis(filename):
+    try:
+        SE = pickle.load(open(filename+'.hist', 'rb')) # load data
+    except NameError:
+        print('No PartialMaxLike instance named', filename)
 
-    confidence_interval = []
-    coverage = []
-    for i in range(num_obs):
-        # Basic method C.I.     
-        if bootstrap_method == 'basic':
-            confidence_interval.append([2*bound_list[i][0,0]  \
-                                        - np.percentile(bound_list[i][1:,0], 97.5),
-                                        2*bound_list[i][0,1]  \
-                                        - np.percentile(bound_list[i][1:,1], 2.5)])
-            coverage.append(np.sum(np.logical_and(bound_list[i][1:,1] <= confidence_interval[-1][1], 
-                                        bound_list[i][1:,0] >= confidence_interval[-1][0]))/SE.boot_iters)
-        
-        # Percentile method C.I. 
-        if bootstrap_method == 'percentile':
-            confidence_interval.append([np.percentile(bound_list[i][1:,0],2.5),
-                                  np.percentile(bound_list[i][1:,1],97.5)])
-            coverage.append(np.sum(np.logical_and(bound_list[i][1:,1] <= confidence_interval[-1][1], 
-                                        bound_list[i][1:,0] >= confidence_interval[-1][0]))/SE.boot_iters)
-            
-        # BC method C.I.
-        if bootstrap_method == 'BC':
-            z0_lower = sts.norm.ppf(sts.percentileofscore(bound_list[i][1:,0], 
-                                bound_list[i][0,0])/100)
-            z0_upper = sts.norm.ppf(sts.percentileofscore(bound_list[i][1:,1],
-                                bound_list[i][0,1])/100)
-            confidence_interval.append([np.percentile(bound_list[i][1:,0],
-                                    100*sts.norm.cdf(2*z0_lower + sts.norm.ppf(0.025))),
-                            np.percentile(bound_list[i][1:,1],
-                                    100*sts.norm.cdf(2*z0_upper + sts.norm.ppf(0.975)))])
-            coverage.append(np.sum(np.logical_and(bound_list[i][1:,1] <= confidence_interval[-1][1], 
-                            bound_list[i][1:,0] >= confidence_interval[-1][0]))/SE.boot_iters)
-
-        # Scatter plot of upper vs lower
-        plt.figure(num=None, figsize=(8,6), dpi=80, facecolor='w', 
-                   edgecolor='k')
-            
-        # plot bootstrap data and orignal data
-        plt.scatter(bound_list[i][1:,0], bound_list[i][1:,1])
-        plt.scatter(bound_list[i][0,0], bound_list[i][0,1])
-
-        ax = plt.gca()
-        ax.set_xlim(min(bound_list[i][:,0])-0.001, 
-                    max(bound_list[i][:,0])+0.001)
-        ax.set_ylim(min(bound_list[i][:,1])-0.001, 
-                    max(bound_list[i][:,1])+0.001)
-        plt.axvspan(confidence_interval[-1][0], 
-                    max(bound_list[i][:,0])+0.001,
-                    facecolor='0.3', alpha=0.2)
-        plt.axhspan(min(bound_list[i][:,1])-0.001,
-                    confidence_interval[-1][1],
-                    facecolor='0.3', alpha=0.2)
-            
-        plt.ylabel('upper bound', fontsize=fontsi)
-        plt.xlabel('lower bound', fontsize=fontsi)
-        plt.title('Observable %1i, Coverage %4.3f' % (i+1,coverage[-1]), 
-                  fontsize=fontsi)
-            
-        # histogram of lower bounds
-        plt.figure(num=None, figsize=(8,6), dpi=80, facecolor='w', 
-                   edgecolor='k')
-        ax = plt.gca()
-        plt.hist(bound_list[i][:,0])
-        plt.axvspan(confidence_interval[-1][0], 
-                    max(bound_list[i][:,0])+0.001,
-                    facecolor='0.3', alpha=0.2)
-        ax.set_xlim(min(bound_list[i][:,0])-0.001, 
-                    max(bound_list[i][:,0])+0.001)
-        plt.axvline(x=bound_list[i][0,0],linewidth=1, color = 'k')
-        plt.xlabel('bootstrap bound', fontsize=fontsi)
-        plt.ylabel('counts', fontsize=fontsi)
-        plt.title('Observable %1i lower bound' % (i+1), fontsize=fontsi)
-            
-        # histogram of upper bounds
-        plt.figure(num=None, figsize=(8,6), dpi=80, facecolor='w', 
-                   edgecolor='k')
-        ax = plt.gca()
-        plt.hist(bound_list[i][:,1])
-        plt.axvspan(min(bound_list[i][:,1])-0.001,
-                    confidence_interval[-1][1],
-                    facecolor='0.3', alpha=0.2)
-        ax.set_xlim(min(bound_list[i][:,1])-0.001, 
-                    max(bound_list[i][:,1])+0.001)
-        plt.axvline(x=bound_list[i][0,1],linewidth=1, color = 'k')
-        plt.xlabel('bootstrap bound', fontsize=fontsi)
-        plt.ylabel('counts', fontsize=fontsi)
-        plt.title('Observable %1i upper bound' % (i+1), fontsize=fontsi)
-
-    return confidence_interval
+    return SE
 
 def poisson(k, lamb):
     """Returns Poissonian distribution."""
