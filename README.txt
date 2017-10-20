@@ -5,22 +5,22 @@ Joint Quantum State and Measurement tomography
 This software package performs joint quantum state and measurement tomography 
 as described in arXiv:17xx.xxxxx. Included are three example scripts that 
 simulate data for one or two trapped ion systems with either symmetric or
-\SGs{anti-symmetric} \SG{asymmetric} measurements: 
+anti-symmetric measurements: 
 
 paper_simulations.py: produces all data and histograms shown in arXiv:17xx.xxxx
     with seed = 0. Also provides an example of symmetric measurements.
     
 asym_simulations.py: produces simulated data from anti-symmetric measruements
-    by similar methods as in previous script.\SGc{I don't think these are actually anti-symmetric.  I would call them "asymmetric".}
+    by similar methods as in previous script.
     
-load_simulations.py: gives an example of loading data with \SGs{anti-symmetric}\SG{asymmetric} 
+load_simulations.py: gives an example of loading data with anti-symmetric 
     measurements.
 
 
 Features
 --------
 - Produces point estimates of unknown quantum states and POVMs
-- Bounds expectation values of states \SG{even} when POVMs are not informationally 
+- Bounds expectation values of states when POVMs are not informationally 
   complete
 - Performs bootstrap resampling to establish confidence intervals
 - Produces histogram plots and data shown in arXiv:17xx.xxxx
@@ -34,7 +34,6 @@ that installdir1 is the directory where the software is saved:
 sys.path.append('installdir1/python/Partial_ML/')
 sys.path.append('installdir1/python/Partial_ML/analysis_scripts')
 sys.path.append('installdir1/python/Partial_ML/partial_tomography')
-\SGc{If someone checks out the Git repository, they will get the directories ".../state_meas_tomo", ".../state_meas_tomo/analysis_scripts", and ".../state_meas_tomo/partial_tomography".  There is no Partial_ML directory.}
 
 The software was written for Python 3.4. To create a Python 3.4 environment,
 we recommend using Anaconda (https://www.anaconda.com/download/). Once 

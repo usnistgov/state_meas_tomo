@@ -34,6 +34,7 @@ T = time.time()
 N = 2 # number of qubits
 bootstrap_iter = 10
 bin_num = 5
+p_mix = 0.99  # mixture with target state and max-mixed state
 seed_val = 0
 
 if N == 1:
@@ -60,7 +61,7 @@ observables = np.dstack((obs1, obs2))   # add additional observables here
 # set up analysis
 SE = analysis.PartialMaxLike(seed=seed_val)
 SE.targets=[target_rho]  
-SE.simulate(fid=0.99)
+SE.simulate(fid=p_mix)
            
 ########################### PLOT HISTOGRAMS ###################################
 
@@ -82,6 +83,6 @@ SE.bootstrapAnalysis()
 
 ## Uncomment to bound expectation values when run through terminal
 #print('Finding expectation value bounds...')
-#analysis_tools.expectationValues(SE, OBSERVABLES)
+#analysis_tools.expectationValues(SE, observables, p_mix)
 
 print('Elapsed Time: ' + str(time.time()- T) + ' seconds')
