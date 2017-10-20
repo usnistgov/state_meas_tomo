@@ -5,22 +5,22 @@ Joint Quantum State and Measurement tomography
 This software package performs joint quantum state and measurement tomography 
 as described in arXiv:17xx.xxxxx. Included are three example scripts that 
 simulate data for one or two trapped ion systems with either symmetric or
-anti-symmetric measurements: 
+asymmetric measurements: 
 
 paper_simulations.py: produces all data and histograms shown in arXiv:17xx.xxxx
     with seed = 0. Also provides an example of symmetric measurements.
     
-asym_simulations.py: produces simulated data from anti-symmetric measruements
+asym_simulations.py: produces simulated data from asymmetric measurements
     by similar methods as in previous script.
     
-load_simulations.py: gives an example of loading data with anti-symmetric 
+load_simulations.py: gives an example of loading data with asymmetric 
     measurements.
 
 
 Features
 --------
 - Produces point estimates of unknown quantum states and POVMs
-- Bounds expectation values of states when POVMs are not informationally 
+- Bounds expectation values of states even when POVMs are not informationally 
   complete
 - Performs bootstrap resampling to establish confidence intervals
 - Produces histogram plots and data shown in arXiv:17xx.xxxx
@@ -31,9 +31,9 @@ Installation
 Once the software is downloaded, update the following lines in each script so 
 that installdir1 is the directory where the software is saved:
 
-sys.path.append('installdir1/python/Partial_ML/')
-sys.path.append('installdir1/python/Partial_ML/analysis_scripts')
-sys.path.append('installdir1/python/Partial_ML/partial_tomography')
+sys.path.append('installdir1/python/state_meas_tomo/‘)
+sys.path.append('installdir1/python/state_meas_tomo/analysis_scripts')
+sys.path.append('installdir1/python/state_meas_tomo/partial_tomography')
 
 The software was written for Python 3.4. To create a Python 3.4 environment,
 we recommend using Anaconda (https://www.anaconda.com/download/). Once 
@@ -54,14 +54,14 @@ All three scripts mentioned above can be run from the terminal:
 
 python xxxxx_simulations.py
 
-or from the Python Shell, or developement environment like Spyder 
+or from the Python Shell, or development environment like Spyder 
 (included with Anaconda). 
 
 Without expectation value bounding:
 No further installation is required. (In the current version of each script
-the expecation value bounding is commented out.)
+the expectation value bounding is commented out.)
 
-With expecation value bounding:
+With expectation value bounding:
 In order to use the expectation-value bounding features (described in Sec. V)
 you additionally must have MATLAB installed and the included python engine 
 extracted, see:
@@ -87,7 +87,7 @@ YALMIP: https://yalmip.github.io
 
 SeDuMi: http://sedumi.ie.lehigh.edu
                                                              
-- To run all three sample scripts with the expecation value bounding, first
+- To run all three sample scripts with the expectation value bounding, first
 uncomment line 27 in analysis.py:
 
 # import matlab.engine  # uncomment for expectation-value bounding
