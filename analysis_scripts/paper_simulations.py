@@ -82,6 +82,6 @@ SE.bootstrapAnalysis()
 
 ## Uncomment to bound expectation values when run through terminal
 #print('Finding expectation value bounds...')
-#analysis_tools.expectationValues(SE, OBSERVABLES)
+#analysis_tools.expectationValues(SE, observables)
 
 print('Elapsed Time: ' + str(time.time()- T) + ' seconds')
