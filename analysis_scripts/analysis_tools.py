@@ -22,7 +22,7 @@ from histogram import Hist
 import simulate_tools as st
 
 
-def expectationValues(SE, observables):
+def expectationValues(SE, observables, fid):
     """
     Runs inferExpectation from analysis and saves to text file.
     
@@ -70,11 +70,14 @@ def expectationValues(SE, observables):
 
         bound_list[i], flag_list[i] = SE.inferExpectation(obs)
         
+        if np.any(flag_list[i] != 0):
+            print('Warning: Some SDPs may not have converged check flag_list')
+        
         # Calculates some important values
         original_est.append([bound_list[i][0,0], bound_list[i][0,1]])
         bootstrap_mean.append([np.mean(bound_list[i][1:,0]), 
                              np.mean(bound_list[i][1:,1])])
-        true_val.append(np.real(np.trace(np.dot(st.makeRho(4,0.99),obs))))
+        true_val.append(np.real(np.trace(np.dot(st.makeRho(SE.dim,fid),obs))))
         est_val.append(np.real(np.trace(np.dot(SE.est_rho[-1],obs))))
                         
         # Basic method confidence intervals
@@ -104,7 +107,7 @@ def expectationValues(SE, observables):
         # saves to .txt file
         file.write('%3i %10.4g %10.4g (%10.4g,%10.4g) (%10.4g,%10.4g) '
                    '(%10.4g,%10.4g) (%10.4g,%10.4g) \n' % 
-                   (i+1, true_val[-1], true_val[-1], 
+                   (i+1, true_val[-1], est_val[-1], 
                     original_est[-1][0], original_est[-1][1], 
                     bootstrap_mean[-1][0], bootstrap_mean[-1][1],
                     basic_CI[-1][0], basic_CI[-1][1],                

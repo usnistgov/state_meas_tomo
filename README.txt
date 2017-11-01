@@ -63,7 +63,7 @@ Without expectation value bounding:
 No further installation is required. (In the current version of each script,
 the expecation value bounding is commented out.)
 
-With expecation value bounding:
+With expectation value bounding:
 In order to use the expectation-value bounding features (described in Sec. V)
 you additionally must have MATLAB installed and the included python engine 
 extracted, see:
@@ -97,7 +97,7 @@ YALMIP: https://yalmip.github.io
 
 SeDuMi: http://sedumi.ie.lehigh.edu
                                                              
-- To run all three sample scripts with the expecation value bounding, first
+- To run all three sample scripts with the expectation value bounding, first
 uncomment line 27 in analysis.py:
 
 # import matlab.engine  # uncomment for expectation-value bounding

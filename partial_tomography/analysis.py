@@ -180,7 +180,7 @@ class AnalysisParameters(HistList):
         est_Q:          Estimated value of transition matrix Q
         bin_flag:       Flag to automatically bin all reference histograms
                         in integer spacing.
-        mbins:          
+        mbins:          Array of number of bins in each dimension of histogram
         name:           String describing these AnalaysisParameters instance
         
     
@@ -997,7 +997,7 @@ class PartialMaxLike(AnalysisParameters):
                 bound_list.append(np.array(bounds)) 
                 flag_list.append(np.array(output_flag))
                 
-        return np.array(bound_list), np.array(output_flag) 
+        return np.array(bound_list), np.array(flag_list) 
             
     def startMatlabEng(self):
         """Starts (or restarts) MATLAB engine."""
@@ -1069,7 +1069,7 @@ class PartialMaxLike(AnalysisParameters):
         """
         if stateSim is None:
             if self.targets[0].size == 4:
-                stateSim = st.one_qubit
+                stateSim = st.oneQubit
             if self.targets[0].size == 16: 
                 stateSim = st.twoQubitSym
         

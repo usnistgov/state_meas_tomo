@@ -30,6 +30,7 @@ t = time.time()
 N = 2               # number of qubits
 bootstrap_iters = 2
 bin_num = [2,2]
+p_mix = 0.99  # mixture with target state and max-mixed state
 
 # Only asymmetric simulation code for 2 qubits exists
 if N == 2:
@@ -48,7 +49,7 @@ observables = np.dstack((obs1, obs2))
 ############################# DO ANALYSIS #####################################
 SE = analysis.PartialMaxLike(seed=0)
 SE.targets=[target_rho]  
-SE.simulate(stateSim='asym', histSim='asym',fid = 0.99)
+SE.simulate(stateSim='asym', histSim='asym',fid = p_mix)
 SE.autobinMaxLike(bin_num)
 
 print('Running Tomgraphy...')
@@ -60,6 +61,6 @@ SE.bootstrapAnalysis()
 
 ## Uncomment to bound expectation values when run through terminal
 #print('Finding expectation value bounds...')
-#analysis_tools.expectationValues(SE, observables)
+#analysis_tools.expectationValues(SE, observables, p_mix)
 
 print('Elapsed Time: ' + str(time.time()- t) + ' seconds')
