@@ -1,6 +1,6 @@
 # state_meas_tomo
 
-#Joint Quantum State and Measurement tomography
+# Joint Quantum State and Measurement tomography
 This software package performs joint quantum state and measurement tomography 
 as described in [arXiv:17xx.xxxxx](put url here). Included are three example scripts that 
 simulate data for one or two trapped ion systems with either symmetric or
@@ -17,7 +17,7 @@ asymmetric measurements:
     of loading data with asymmetric measurements.
 
 
-#Features
+# Features
 - Produces point estimates of unknown quantum states and POVMs
 - Bounds expectation values of states even when POVMs are not informationally 
   complete
@@ -25,7 +25,7 @@ asymmetric measurements:
 - Produces histogram plots and data shown in arXiv:17xx.xxxx
 
 
-#Installation
+# Installation
 You may obtain the software from
 [https://github.com/usnistgov/state_meas_tomo](https://github.com/usnistgov/state_meas_tomo).
 
@@ -61,10 +61,10 @@ All three scripts mentioned above can be run from the terminal:
 from a Python Shell, or a developement environment like Spyder 
 (included with Anaconda).
 
-###Without expectation value bounding
+### Without expectation value bounding
 No further installation is required. (In the current version of each script, the expecation value bounding is commented out.)
 
-###With expectation value bounding
+### With expectation value bounding
 In order to use the expectation-value bounding features (described in Sec. V of arXiv:17xx.xxxxx) you additionally must have MATLAB installed and the included python engine extracted, see [Mathworks's instructions](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html).
 
 To extract the engine, from within the py34 environment, run:
@@ -98,7 +98,7 @@ uncomment line 27 in analysis.py:
 and then uncomment the bottom lines of the chosen script.
 
 
-#Outputs
+# Outputs
 Each PartialMaxLike instance (contained in analysis.py module) that uses the
 .tomography or .bootstrapAnalysis methods creates a "autosave_name.hist" file,
 where name is the attribuite given for the instance (defaults to the date), 
@@ -114,7 +114,7 @@ of lower and upper bounds for each bootstrap resample.
 The remaining functions in analysis_tools.py create figure 2 and 5 in
 arXiv:17xx.xxxxx and other figures that may be useful.
 
-#Support
+# Support
 If you are having issues, please contact [Scott Glancy](mailto:sglancy@nist.gov).
 
 If you use this software, please cite our paper:  
