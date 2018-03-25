@@ -118,7 +118,7 @@ arXiv:1803.08245 and other figures that may be useful.
 If you are having issues, please contact [Scott Glancy](mailto:sglancy@nist.gov).
 
 If you use this software, please cite our paper:  
-A. C. Keith, Charles H. Baldwin, Scott Glancy, E. Knill "Joint Quantum State and Measurement Tomography with Incomplete Measurements" [arXiv:1803.08245](https://arxiv.org/abs/1803.08245).
+Adam C. Keith, Charles H. Baldwin, Scott Glancy, E. Knill "Joint Quantum State and Measurement Tomography with Incomplete Measurements" [arXiv:1803.08245](https://arxiv.org/abs/1803.08245).
 
-Last updated 2018-Jan-31.
+Last updated 2018-Mar-24.
 
