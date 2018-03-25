@@ -2,12 +2,12 @@
 
 # Joint Quantum State and Measurement tomography
 This software package performs joint quantum state and measurement tomography 
-as described in [arXiv:17xx.xxxxx](put url here). Included are three example scripts that 
+as described in [arXiv:1803.08245](https://arxiv.org/abs/1803.08245). Included are three example scripts that 
 simulate data for one or two trapped ion systems with either symmetric or
 asymmetric measurements: 
 
 - analysis_scripts/paper_simulations.py: produces all data and
-    histograms shown in arXiv:17xx.xxxx with seed = 0. Also provides
+    histograms shown in arXiv:1803.08245 with seed = 0. Also provides
     an example of symmetric measurements.
 
 - analysis_scripts/asym_simulations.py: produces simulated data from
@@ -22,7 +22,7 @@ asymmetric measurements:
 - Bounds expectation values of states even when POVMs are not informationally 
   complete
 - Performs bootstrap resampling to establish confidence intervals
-- Produces histogram plots and data shown in arXiv:17xx.xxxx
+- Produces histogram plots and data shown in arXiv:1803.08245
 
 
 # Installation
@@ -65,7 +65,7 @@ from a Python Shell, or a developement environment like Spyder
 No further installation is required. (In the current version of each script, the expecation value bounding is commented out.)
 
 ### With expectation value bounding
-In order to use the expectation-value bounding features (described in Sec. V of arXiv:17xx.xxxxx) you additionally must have MATLAB installed and the included python engine extracted, see [Mathworks's instructions](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html).
+In order to use the expectation-value bounding features (described in Sec. V of arXiv:1803.08245) you additionally must have MATLAB installed and the included python engine extracted, see [Mathworks's instructions](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html).
 
 To extract the engine, from within the py34 environment, run:
 ```
@@ -112,13 +112,13 @@ medians from the bootstrap resamples. It also creates .out file with the list
 of lower and upper bounds for each bootstrap resample.
 
 The remaining functions in analysis_tools.py create figure 2 and 5 in
-arXiv:17xx.xxxxx and other figures that may be useful.
+arXiv:1803.08245 and other figures that may be useful.
 
 # Support
 If you are having issues, please contact [Scott Glancy](mailto:sglancy@nist.gov).
 
 If you use this software, please cite our paper:  
-A. C. Keith, Charles H. Baldwin, Scott Glancy, E. Knill "Joint Quantum State and Measurement Tomography with Incomplete Measurements" [arXiv:18xx.xxxx](put url here).
+A. C. Keith, Charles H. Baldwin, Scott Glancy, E. Knill "Joint Quantum State and Measurement Tomography with Incomplete Measurements" [arXiv:1803.08245](https://arxiv.org/abs/1803.08245).
 
 Last updated 2018-Jan-31.
 
