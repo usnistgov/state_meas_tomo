@@ -1,6 +1,6 @@
 # state_meas_tomo
 
-# Joint Quantum State and Measurement tomography
+# Joint Quantum State and Measurement Tomography
 This software package performs joint quantum state and measurement tomography 
 as described in [arXiv:1803.08245](https://arxiv.org/abs/1803.08245). Included are three example scripts that 
 simulate data for one or two trapped ion systems with either symmetric or
